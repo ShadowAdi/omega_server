@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://omega-client-jet.vercel.app", // Make sure this matches your frontend URL
+        origin: "https://omega-client-jet.vercel.app", 
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -88,7 +88,6 @@ app.use("/api", router);
 
 ConnectDB();
 
-// Listen on the same PORT for both HTTP and WebSocket
 const HOST = '0.0.0.0'; // Bind to all network interfaces
 
 httpServer.listen(PORT, HOST, () => {

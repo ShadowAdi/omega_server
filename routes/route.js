@@ -22,7 +22,8 @@ router.post("/import-users", ImportData); // Make sure this matches the frontend
 
 
 router.get("/auth/google", (req, res, next) => {
-    console.log("Redirect URI Sent:", "https://omega-server-rouge.vercel.app/api/auth/google/callback");
+    console.log("Redirect URI Sent:", 
+        "https://omega-server-k372.onrender.com/api/auth/google/callback");
     passport.authenticate("google", {
         scope: ["profile", "email"],
     })(req, res, next);

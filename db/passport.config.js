@@ -7,7 +7,7 @@ passport.use(
         {
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: "https://omega-server-rouge.vercel.app/api/auth/google/callback",
+            callbackURL: "https://omega-server-k372.onrender.com/api/auth/google/callback",
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
