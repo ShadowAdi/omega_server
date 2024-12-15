@@ -22,11 +22,13 @@ router.post("/import-users", ImportData); // Make sure this matches the frontend
 
 
 router.get("/auth/google", (req, res, next) => {
-    console.log("Redirect URI Sent to Google:", process.env.GOOGLE_REDIRECT_URI);
+    console.log("Redirect URI Sent:", process.env.GOOGLE_REDIRECT_URI);
     passport.authenticate("google", {
         scope: ["profile", "email"],
     })(req, res, next);
 });
+
+
 router.get("/auth/google/callback",
     passport.authenticate("google", { failureRedirect: "https://omega-client-jet.vercel.app" }),
     (req, res) => {
@@ -38,6 +40,7 @@ router.get("/auth/google/callback",
         res.redirect(`https://omega-client-jet.vercel.app?token=${token}`);
     }
 );
+
 
 
 router.get("/logout", (req, res) => {
