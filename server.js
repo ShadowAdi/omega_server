@@ -89,6 +89,8 @@ app.use("/api", router);
 ConnectDB();
 
 // Listen on the same PORT for both HTTP and WebSocket
-httpServer.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+const HOST = '0.0.0.0'; // Bind to all network interfaces
+
+httpServer.listen(PORT, HOST, () => {
+    console.log(`Server is running on ${HOST}:${PORT}`);
 });
