@@ -21,11 +21,14 @@ router.get("/export-users", ExportData)
 router.post("/import-users", ImportData); // Make sure this matches the frontend URL
 
 
-router.get("/auth/google", passport.authenticate("google", {
-    scope: ["profile", "email"],
-}));
+router.get("/auth/google", (req, res, next) => {
+    console.log("Redirect URI Sent to Google:", process.env.GOOGLE_REDIRECT_URI);
+    passport.authenticate("google", {
+        scope: ["profile", "email"],
+    })(req, res, next);
+});
 router.get("/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "https://omega-client-jet.vercel.app" }),  // Failure redirect to a fallback route
+    passport.authenticate("google", { failureRedirect: "https://omega-client-jet.vercel.app" }),
     (req, res) => {
         const token = jwt.sign(
             { id: req.user._id, email: req.user.email },
@@ -33,7 +36,9 @@ router.get("/auth/google/callback",
             { expiresIn: "1h" }
         );
         res.redirect(`https://omega-client-jet.vercel.app?token=${token}`);
-    });
+    }
+);
+
 
 router.get("/logout", (req, res) => {
     req.logout(() => {
