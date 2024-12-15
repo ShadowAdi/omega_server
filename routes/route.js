@@ -38,8 +38,8 @@ router.get("/auth/google/callback",
             { expiresIn: "1h" }
         );
         res.redirect(`https://omega-client-jet.vercel.app?token=${token}`);
-    }
-);
+    });
+
 
 
 
