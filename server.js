@@ -72,10 +72,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({
     credentials: true,
-    origin: "https://omega-client-jet.vercel.app",
+    origin: (origin, callback) => {
+        if (!origin || origin === "https://omega-client-jet.vercel.app") {
+            callback(null, true);  // Allow your frontend URL
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"]
-
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
