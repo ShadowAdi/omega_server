@@ -48,7 +48,7 @@ const UserSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const adminEmails = ["shadowshukla76@gmail.com"];
+const adminEmails = ["shadowshukla76@gmail.com","admin@gmail.com"];
 
 UserSchema.pre('save', async function (next) {
     if (this.provider === 'email' && this.isModified('password')) {
